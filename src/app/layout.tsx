@@ -22,8 +22,7 @@ export const metadata: Metadata = {
   description:
     "Solução gerida Vodafone Business SASE. Segurança unificada na cloud e SD-WAN integrado para sucursais e utilizadores remotos.",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/favicon.ico", sizes: "32x32" }],
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon.ico",
   },
 };
 

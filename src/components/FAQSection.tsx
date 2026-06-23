@@ -35,7 +35,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faqs" className="relative overflow-hidden px-4 sm:px-6 py-24 bg-[#000000] border-t border-white/5">
+    <section id="faqs" className="px-4 sm:px-6 py-24 bg-[#000000] border-t border-white/5">
       <div className="mx-auto max-w-3xl">
         {/* Apple Title */}
         <Reveal className="text-center mb-16" variant="up">

@@ -25,6 +25,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4.5rem;
+  /* Increase base font size for readability */
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -34,9 +37,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
+  font-size: 0.9375rem;  /* 15px base - slightly larger than default Tailwind */
+  line-height: 1.65;      /* Better reading rhythm */
 }
 
-/* Drifting glowing Vodafone red background waves */
+/* Better paragraph readability */
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+/* Drifting glowing Vodafone red background waves — more subtle & premium */
 body::before {
   content: "";
   position: fixed;
@@ -46,11 +60,11 @@ body::before {
   height: 100vh;
   z-index: -10;
   background: 
-    radial-gradient(circle at 15% 25%, rgba(230, 0, 0, 0.035) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(230, 0, 0, 0.025) 0%, transparent 45%);
-  filter: blur(80px);
+    radial-gradient(circle at 10% 20%, rgba(230, 0, 0, 0.035) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(230, 0, 0, 0.025) 0%, transparent 50%);
+  filter: blur(100px);
   pointer-events: none;
-  animation: bg-drift 30s ease-in-out infinite alternate;
+  animation: bg-drift 35s ease-in-out infinite alternate;
 }
 
 @keyframes bg-drift {
@@ -58,7 +72,7 @@ body::before {
     transform: translate(0, 0) scale(1);
   }
   100% {
-    transform: translate(4%, 3%) scale(1.04);
+    transform: translate(5%, 4%) scale(1.06);
   }
 }
 
@@ -82,7 +96,7 @@ body::before {
   100% { background-position: 200% 0; }
 }
 
-/* Mobbin micro-interaction: shimmer highlight on hover (subtle) */
+/* Premium shimmer micro-interaction */
 .shimmer-hover {
   position: relative;
   overflow: hidden;
@@ -107,7 +121,7 @@ body::before {
   animation: shimmer 1.5s ease-in-out;
 }
 
-/* Smooth tap target — scale down on press */
+/* Smooth tap target */
 .press {
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -175,11 +189,9 @@ body::before {
   transform: translateY(-2px);
 }
 
-/* ── Mobbin-style glass card ── */
-/* Translucent surface + thin border + backdrop blur.
-   Pairs well with bg-white/5 for the card bg. */
+/* ── Premium glass card (Mobbin-style) ── */
 .card-mobbin {
-  border-radius: 1.25rem;        /* 20px — Mobbin's signature radius */
+  border-radius: 1.25rem;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
   backdrop-filter: blur(12px);
@@ -197,7 +209,7 @@ body::before {
               0 12px 40px -8px rgba(230,0,0,0.2);
 }
 
-/* Mobbin-style interactive pill (for tabs / filters) */
+/* Premium pill for tabs / filters */
 .pill-mobbin {
   padding: 0.5rem 1rem;
   border-radius: 9999px;
@@ -236,6 +248,33 @@ body::before {
   scrollbar-width: none;
 }
 
+/* Vodafone + Fortinet co-branding badge */
+.vodafone-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  background: rgba(230, 0, 0, 0.08);
+  border: 1px solid rgba(230, 0, 0, 0.15);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e60000;
+}
+
+.vodafone-badge:hover {
+  background: rgba(230, 0, 0, 0.12);
+  border-color: rgba(230, 0, 0, 0.25);
+}
+
+/* Premium count-up number styling */
+.number-premium {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
 @keyframes sparkle-float {
   0%, 100% {
     opacity: 0;
@@ -261,28 +300,23 @@ body::before {
   }
 }
 
-/* Mobile polish: kill the 300ms tap delay on iOS Safari and ensure
-   buttons give tactile feedback. Targets are opt-in via the .tap class
-   or applied directly to <button> elements that are not inside forms. */
+/* Mobile polish */
 button:not([type="submit"]):not([type="button"]),
 .tap {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Ensure primary touch targets meet Apple's 44x44pt guideline on mobile */
 @media (max-width: 767px) {
   button:not(.no-min-h),
   a:not(.no-min-h) {
     min-height: 44px;
   }
 
-  /* Increase tap target for bottom interactive areas */
   .mobile-touch {
     padding: 12px 16px;
   }
 
-  /* Better spacing for mobile sections */
   section {
     padding-left: 16px;
     padding-right: 16px;

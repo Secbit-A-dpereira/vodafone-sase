@@ -372,7 +372,21 @@ export default function HeroSection() {
 
 
 
-          {/* Progress bars — expandem/contraem por cartão */}
+          {/* Vodafone + Fortinet co-branding */}
+          <div className="mt-8 animate-fade-in-up flex items-center justify-center gap-3">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/5">
+              <span className="text-[10px] font-mono text-text-muted uppercase tracking-widest">Serviço totalmente gerido</span>
+              <span className="text-xs font-bold text-vodafone tracking-wider">Vodafone Business</span>
+              <span className="text-border-light text-[10px] mx-0.5">·</span>
+              <span className="text-[10px] font-mono text-text-muted uppercase tracking-widest">tecnologia</span>
+              <span className="text-xs font-bold text-fortinet tracking-wider">Fortinet</span>
+            </div>
+          </div>
+
+          {/* CTA hint */}
+          <div className="mt-4 animate-fade-in-up">
+            <span className="text-[11px] text-text-muted tracking-wider">↓ Descubra como proteger a sua empresa</span>
+          </div>
           <div className="flex gap-1.5 mt-6 justify-center w-full max-w-xs mx-auto animate-fade-in-up">
             {SLIDES.map((_, idx) => (
               <div

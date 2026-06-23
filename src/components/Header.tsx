@@ -60,16 +60,22 @@ export default function Header() {
           <div className="flex items-center gap-0.5">
             <span className="text-text-primary text-sm font-semibold">SASE</span>
           </div>
+
+          {/* Fortinet co-branding badge */}
+          <div className="hidden sm:flex items-center gap-1.5 ml-3 pl-3 border-l border-white/10">
+            <span className="text-[10px] text-text-muted uppercase tracking-widest font-mono font-medium">powered by</span>
+            <span className="text-[11px] font-bold text-fortinet tracking-tight">Fortinet</span>
+          </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
-          {NAV_ITEMS.map((item) => {
+        <nav className="hidden md:flex items-center gap-1 ml-6">
+          {NAV_ITEMS.slice(0, 7).map((item) => {
             const isActive = currentPath === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative text-[10px] font-bold transition-all duration-200 uppercase tracking-widest px-3 py-2 rounded-lg ${
+                className={`relative text-[10px] font-bold transition-all duration-200 uppercase tracking-widest px-2 py-1.5 rounded-lg whitespace-nowrap ${
                   isActive
                     ? "text-white bg-vodafone/15 shadow-[0_0_12px_rgba(230,0,0,0.25)] border border-vodafone/20"
                     : "text-text-secondary hover:text-text-primary hover:bg-white/[0.04]"
@@ -79,6 +85,17 @@ export default function Header() {
               </Link>
             );
           })}
+          {/* Construtor badge separado */}
+          <Link
+            href="/construtor"
+            className={`relative text-[10px] font-bold transition-all duration-200 uppercase tracking-widest px-2 py-1.5 rounded-lg whitespace-nowrap ${
+              currentPath === "/construtor"
+                ? "text-white bg-vodafone/15 shadow-[0_0_12px_rgba(230,0,0,0.25)] border border-vodafone/20"
+                : "text-vodafone/80 hover:text-vodafone border border-vodafone/20 hover:border-vodafone/40 bg-vodafone/5"
+            }`}
+          >
+            ⚡ {NAV_ITEMS[7].label}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3 md:hidden">

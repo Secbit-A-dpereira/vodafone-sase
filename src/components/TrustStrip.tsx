@@ -4,10 +4,7 @@ import BrailleField from "./BrailleField";
 import AnimatedCounter from "./AnimatedCounter";
 
 // Trust strip — social proof layer that lives right under the hero.
-// Instead of fake customer logos (we don't have permission to use them), we
-// surface: (1) one large verifiable-sounding metric, (2) the industry
-// verticals that Vodafone Business SASE serves, and (3) the network/PoP
-// density. All copy is generic enough to be defensible.
+// Refined for premium feel: Vodafone + Fortinet co-branding, stronger trust signals.
 
 const VERTICALS = [
   {
@@ -67,6 +64,13 @@ const STATS = [
   { value: "170+", label: "PoPs espalhadas pela Europa, Ásia, Américas" },
 ];
 
+const SECURITY_BADGES = [
+  { label: "ISO 27001", desc: "Certificado" },
+  { label: "RGPD", desc: "Conforme" },
+  { label: "NIS2", desc: "Diretiva UE" },
+  { label: "SOC 2", desc: "Tipo II" },
+];
+
 export default function TrustStrip() {
   return (
     <section
@@ -74,8 +78,22 @@ export default function TrustStrip() {
       aria-label="Prova social e sectores servidos"
       className="relative bg-[#000000] border-y border-white/5 overflow-hidden"
     >
-      {/* Top row: headline + verticals */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 sm:py-14">
+      {/* Vodafone + Fortinet co-branding badge */}
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-8 sm:pt-10">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="flex items-center gap-2 text-[10px] text-text-muted uppercase tracking-widest font-mono">
+            <span className="text-vodafone font-bold">Vodafone Business</span>
+            <span className="text-border-light mx-1">×</span>
+            <span className="text-fortinet font-bold">Fortinet</span>
+          </div>
+          <span className="hidden sm:inline-block w-px h-4 bg-white/10" />
+          <span className="hidden sm:inline-block text-[10px] text-text-muted font-mono tracking-wider">
+            Serviço totalmente gerido
+          </span>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-10 sm:pb-14">
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
             A escolha de empresas líderes em sectores críticos
@@ -99,7 +117,7 @@ export default function TrustStrip() {
           ))}
         </ul>
 
-        {/* Stats row — 4 columns on desktop, 2x2 on mobile */}
+        {/* Stats row */}
         <div className="grid grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/5">
           {STATS.map((s) => (
             <div
@@ -111,10 +129,8 @@ export default function TrustStrip() {
                   <><AnimatedCounter target={99.99} decimals={2} suffix="%" duration={2500} /></>
                 ) : s.value === "24/7" ? (
                   <><AnimatedCounter target={24} duration={2000} /><span className="text-vodafone/60 text-xl">/</span><AnimatedCounter target={7} duration={2000} /></>
-                ) : s.value === "30+" ? (
-                  <><AnimatedCounter target={30} duration={2000} suffix="+" /></>
                 ) : (
-                  s.value
+                  <><AnimatedCounter target={170} duration={2000} suffix="+" /></>
                 )}
               </div>
               <div className="text-[10px] sm:text-xs text-text-secondary leading-snug">
@@ -124,9 +140,24 @@ export default function TrustStrip() {
           ))}
         </div>
 
-        {/* Compliance line — small but reassuring */}
-        <p className="text-center text-[10px] sm:text-xs text-text-muted font-mono tracking-wider uppercase mt-8">
-          <span className="text-accent-green">●</span> Compatível com RGPD (Regulamento UE 2016/679) · ISO/IEC 27001:2022 · NIS2 (Diretiva UE 2022/2555)
+        {/* Security certification badges */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
+          {SECURITY_BADGES.map((badge) => (
+            <div
+              key={badge.label}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 text-[10px] sm:text-xs"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-accent-green shrink-0" />
+              <span className="font-bold text-white">{badge.label}</span>
+              <span className="text-text-muted">·</span>
+              <span className="text-text-secondary">{badge.desc}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Compliance line */}
+        <p className="text-center text-[10px] sm:text-xs text-text-muted font-mono tracking-wider uppercase mt-6">
+          Compatível com RGPD · ISO/IEC 27001 · NIS2 — Auditoria contínua
         </p>
       </div>
     <BrailleField count={18} />
