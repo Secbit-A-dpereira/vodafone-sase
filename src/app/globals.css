@@ -1,26 +1,290 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-fortinet: #ed1c24;
+  --color-fortinet-dark: #c4151c;
+  --color-fortinet-glow: #ed1c2440;
+  --color-vodafone: #e60000;
+  --color-vodafone-dark: #b30000;
+  --color-vodafone-glow: #e6000040;
+  --color-surface: #000000;
+  --color-surface-2: #08080c;
+  --color-surface-3: #0f0f14;
+  --color-surface-4: #151520;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-light: rgba(255, 255, 255, 0.12);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0ab;
+  --color-text-muted: #52525b;
+  --color-accent-green: #06d6a0;
+  --color-accent-cyan: #00b4d8;
+  --font-sans: "Vodafone Rg", "Vodafone Lt", "Vodafone", "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Drifting glowing Vodafone red background waves */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(230, 0, 0, 0.035) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(230, 0, 0, 0.025) 0%, transparent 45%);
+  filter: blur(80px);
+  pointer-events: none;
+  animation: bg-drift 30s ease-in-out infinite alternate;
+}
+
+@keyframes bg-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(4%, 3%) scale(1.04);
+  }
+}
+
+::selection {
+  background: var(--color-vodafone-glow);
+  color: #fff;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px var(--color-fortinet-glow); }
+  50% { box-shadow: 0 0 20px var(--color-fortinet-glow), 0 0 40px #ed1c2420; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Mobbin micro-interaction: shimmer highlight on hover (subtle) */
+.shimmer-hover {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.shimmer-hover:hover::after {
+  opacity: 1;
+  animation: shimmer 1.5s ease-in-out;
+}
+
+/* Smooth tap target — scale down on press */
+.press {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.press:active {
+  transform: scale(0.98);
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out both;
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.3s ease-in both;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ed1c24 0%, #ff6b6b 50%, #ed1c24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #ed1c24, #ed1c2440, #2a2a3a);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  border-color: var(--color-fortinet);
+  box-shadow: 0 0 20px var(--color-fortinet-glow);
+  transform: translateY(-2px);
+}
+
+/* ── Mobbin-style glass card ── */
+/* Translucent surface + thin border + backdrop blur.
+   Pairs well with bg-white/5 for the card bg. */
+.card-mobbin {
+  border-radius: 1.25rem;        /* 20px — Mobbin's signature radius */
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset,
+              0 4px 24px -8px rgba(0,0,0,0.4);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-mobbin:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(230,0,0,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset,
+              0 12px 40px -8px rgba(230,0,0,0.2);
+}
+
+/* Mobbin-style interactive pill (for tabs / filters) */
+.pill-mobbin {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.pill-mobbin:hover {
+  background: rgba(230,0,0,0.08);
+  border-color: rgba(230,0,0,0.3);
+}
+
+.pill-mobbin.active {
+  background: rgba(230,0,0,0.12);
+  border-color: rgba(230,0,0,0.4);
+  color: #e60000;
+}
+
+.tab-active {
+  color: var(--color-fortinet);
+  border-bottom: 2px solid var(--color-fortinet);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes sparkle-float {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  25% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-20px) scale(1);
+  }
+  75% {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile polish: kill the 300ms tap delay on iOS Safari and ensure
+   buttons give tactile feedback. Targets are opt-in via the .tap class
+   or applied directly to <button> elements that are not inside forms. */
+button:not([type="submit"]):not([type="button"]),
+.tap {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure primary touch targets meet Apple's 44x44pt guideline on mobile */
+@media (max-width: 767px) {
+  button:not(.no-min-h),
+  a:not(.no-min-h) {
+    min-height: 44px;
+  }
+
+  /* Increase tap target for bottom interactive areas */
+  .mobile-touch {
+    padding: 12px 16px;
+  }
+
+  /* Better spacing for mobile sections */
+  section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FortiSASE · Project Overview</title>
+<style>
+  :root {
+    --bg: #0a0b0f;
+    --bg-elev: #12141a;
+    --bg-elev2: #1a1d26;
+    --border: #23262f;
+    --border-strong: #2e323d;
+    --text: #e6e8ee;
+    --text-muted: #8a8f9c;
+    --text-dim: #5b6070;
+    --accent: #da291c;       /* Fortinet red */
+    --accent-soft: #f0403099;
+    --accent-glow: #da291c33;
+    --blue: #4d9fff;
+    --green: #3fcf8e;
+    --amber: #f5a524;
+    --purple: #a78bfa;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent 60%),
+      var(--bg);
+    min-height: 100vh;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 48px 32px 96px; }
+
+  /* ─── HERO ─── */
+  .hero { text-align: center; padding: 32px 0 56px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    background: var(--bg-elev); border: 1px solid var(--border);
+    color: var(--text-muted); font-size: 13px; font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 64px); font-weight: 800; letter-spacing: -0.03em;
+    background: linear-gradient(180deg, #fff 0%, #b0b4c0 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .hero h1 .accent { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+  .hero p { color: var(--text-muted); font-size: 17px; max-width: 560px; margin: 0 auto; }
+
+  /* ─── STATS ─── */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin: 40px 0;
+  }
+  .stat {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stat:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .stat-num { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+  .stat-num .unit { color: var(--accent); font-size: 20px; margin-left: 2px; }
+  .stat-label { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+
+  /* ─── SECTION HEADERS ─── */
+  .section { margin: 64px 0 32px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .section-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--bg-elev); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .section-sub { color: var(--text-muted); font-size: 14px; margin-left: auto; }
+
+  /* ─── STACK BADGES ─── */
+  .stack { display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--bg-elev); border: 1px solid var(--border);
+    padding: 10px 16px; border-radius: 10px;
+    font-size: 14px; font-weight: 500;
+    transition: border-color 0.2s;
+  }
+  .badge:hover { border-color: var(--border-strong); }
+  .badge svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .badge-version {
+    color: var(--text-dim); font-weight: 400; font-size: 12px;
+    padding: 2px 6px; background: var(--bg-elev2); border-radius: 4px;
+    margin-left: 4px;
+  }
+
+  /* ─── FILE TREE ─── */
+  .tree {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 24px;
+    font-family: "SF Mono", "Monaco", "Cascadia Code", monospace;
+    font-size: 13px; line-height: 1.9;
+    max-height: 600px; overflow: auto;
+  }
+  .tree details { margin-left: 0; }
+  .tree details > summary { cursor: pointer; user-select: none; list-style: none; }
+  .tree details > summary::-webkit-details-marker { display: none; }
+  .tree details > summary::marker { content: ""; }
+  .tree-row { display: flex; align-items: center; gap: 8px; color: var(--text); padding: 1px 0; }
+  .tree-row:hover { color: var(--accent); }
+  .tree-row .icon { color: var(--text-dim); font-size: 11px; width: 14px; text-align: center; flex-shrink: 0; }
+  .tree-row .name { flex: 1; }
+  .tree-row .meta { color: var(--text-dim); font-size: 11px; font-family: -apple-system, sans-serif; }
+  .tree-row.folder > .name { color: var(--text); font-weight: 500; }
+  .tree-row.file > .name { color: var(--text-muted); }
+  .tree-children { margin-left: 20px; border-left: 1px dashed var(--border); padding-left: 14px; }
+  .tree details[open] > summary > .icon { transform: rotate(90deg); display: inline-block; transition: transform 0.15s; }
+  .tree-children .tree-row { font-size: 12.5px; }
+
+  /* ─── PAGE FLOW ─── */
+  .flow {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px;
+  }
+  .flow-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px; position: relative;
+  }
+  .flow-step {
+    background: var(--bg-elev2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 500;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .flow-step:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .flow-num {
+    width: 24px; height: 24px; border-radius: 6px;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+  .flow-step .label { color: var(--text); }
+  .flow-step .tag {
+    margin-left: auto; font-size: 10px; color: var(--text-dim);
+    padding: 2px 6px; background: var(--bg); border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  /* ─── COMPONENT CARDS ─── */
+  .categories { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .category {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .category:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .cat-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .cat-emoji { font-size: 20px; }
+  .cat-title { font-size: 15px; font-weight: 600; }
+  .cat-count { margin-left: auto; color: var(--text-dim); font-size: 12px; }
+  .cat-items { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    background: var(--bg-elev2); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 6px;
+    font-size: 12px; color: var(--text-muted);
+    font-family: "SF Mono", "Monaco", monospace;
+  }
+  .chip:hover { color: var(--text); border-color: var(--border-strong); }
+
+  /* ─── DEPLOY INFO ─── */
+  .deploy {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .info-card {
+    background: var(--bg-elev); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 24px;
+  }
+  .info-card h4 { font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+  .info-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 14px; }
+  .info-row .key { color: var(--text-muted); }
+  .info-row .val { color: var(--text); font-family: "SF Mono", monospace; font-size: 13px; }
+
+  /* ─── ALERT ─── */
+  .alert {
+    background: linear-gradient(135deg, rgba(245, 165, 36, 0.08), rgba(218, 41, 28, 0.05));
+    border: 1px solid rgba(245, 165, 36, 0.3);
+    border-radius: 14px; padding: 20px 24px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .alert-icon { color: var(--amber); flex-shrink: 0; }
+  .alert-content h4 { color: var(--amber); font-size: 15px; margin-bottom: 4px; }
+  .alert-content p { color: var(--text-muted); font-size: 14px; }
+  .alert-content code { background: var(--bg); padding: 2px 6px; border-radius: 4px; color: var(--text); font-size: 13px; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    margin-top: 64px; padding-top: 32px;
+    border-top: 1px solid var(--border);
+    text-align: center; color: var(--text-dim); font-size: 13px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .container { padding: 24px 16px 64px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .deploy { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow"><span class="dot"></span> Single-page project · /Users/danielpereira/Desktop/Singlepage/SSE</div>
+    <h1>Forti<span class="accent">SASE</span></h1>
+    <p>Landing page estática para o produto SASE da Fortinet. Next.js 16 · React 19 · Cloudflare Pages.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-num">22<span class="unit">.</span></div><div class="stat-label">componentes React</div></div>
+    <div class="stat"><div class="stat-num">17<span class="unit">.</span></div><div class="stat-label">seções na página</div></div>
+    <div class="stat"><div class="stat-num">1<span class="unit">.</span></div><div class="stat-label">Cloudflare Function</div></div>
+    <div class="stat"><div class="stat-num">100<span class="unit">%</span></div><div class="stat-label">static export</div></div>
+  </div>
+
+  <!-- STACK -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h2 class="section-title">Stack</h2>
+      <span class="section-sub">do package.json</span>
+    </div>
+    <div class="stack">
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+        Next.js <span class="badge-version">16.2.6</span>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        React <span class="badge-version">19.2.4</span>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        TypeScript <span class="badge-version">^5</span>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 7v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V7l-8-5z"/></svg>
+        Tailwind CSS <span class="badge-version">v4</span>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        ESLint <span class="badge-version">^9</span>
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+        Cloudflare Pages <span class="badge-version">out/</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERT -->
+  <div class="section">
+    <div class="alert">
+      <div class="alert-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="alert-content">
+        <h4>Atenção: Next.js 16.2.6</h4>
+        <p>Esta versão tem <strong>breaking changes</strong>. Antes de mexer no código, ler <code>node_modules/next/dist/docs/</code> — APIs e convenções podem ter mudado em relação ao que está no meu treinamento.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILE TREE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+      </div>
+      <h2 class="section-title">Estrutura</h2>
+      <span class="section-sub">clique para expandir</span>
+    </div>
+    <div class="tree">
+      <details open>
+        <summary class="tree-row folder">
+          <span class="icon">▶</span>
+          <span class="name">SSE/</span>
+        </summary>
+        <div class="tree-children">
+
+          <details open>
+            <summary class="tree-row folder">
+              <span class="icon">▶</span>
+              <span class="name">src/</span>
+            </summary>
+            <div class="tree-children">
+              <details open>
+                <summary class="tree-row folder">
+                  <span class="icon">▶</span>
+                  <span class="name">app/</span>
+                </summary>
+                <div class="tree-children">
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">layout.tsx</span><span class="meta">root</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">page.tsx</span><span class="meta">monta a página</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">globals.css</span></div>
+                </div>
+              </details>
+              <details open>
+                <summary class="tree-row folder">
+                  <span class="icon">▶</span>
+                  <span class="name">components/</span>
+                  <span class="meta">22 ficheiros</span>
+                </summary>
+                <div class="tree-children">
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">Header.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">HeroSection.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">SecurityChallenges.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">WhatIsSASE.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">ArchitectureDiagram.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">FortiClientSection.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">SecureBrowserSection.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">StrategicValue.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">BusinessBenefits.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">Differentiators.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">GartnerLeader.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">SaseSimulator.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">UseCaseTabs.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">TechnicalKB.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">ContactAgentCTA.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">FAQSection.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">LeadDrawer.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">LeadForm.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">DeepDiveDrawer.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">MobileExperience.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">ManagedServices.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">TransformDrivers.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">ScrollIndicator.tsx</span></div>
+                  <div class="tree-row file"><span class="icon">·</span><span class="name">Footer.tsx</span></div>
+                </div>
+              </details>
+            </div>
+          </details>
+
+          <div class="tree-row folder"><span class="icon">▶</span><span class="name">functions/api/</span><span class="meta">Cloudflare</span></div>
+          <div class="tree-row file" style="margin-left: 20px;"><span class="icon">·</span><span class="name">lead.js</span><span class="meta">POST handler</span></div>
+
+          <details>
+            <summary class="tree-row folder">
+              <span class="icon">▶</span>
+              <span class="name">out/</span>
+              <span class="meta">build output · pronto p/ deploy</span>
+            </summary>
+            <div class="tree-children">
+              <div class="tree-row file"><span class="icon">·</span><span class="name">index.html</span></div>
+              <div class="tree-row file"><span class="icon">·</span><span class="name">_redirects · _headers</span></div>
+              <div class="tree-row file"><span class="icon">·</span><span class="name">strategic-partnership.png</span></div>
+              <div class="tree-row file"><span class="icon">·</span><span class="name">assets/fortisase-deployment-guide.pdf</span></div>
+            </div>
+          </details>
+
+          <div class="tree-row file"><span class="icon">·</span><span class="name">package.json</span><span class="meta">name: forti-sase</span></div>
+          <div class="tree-row file"><span class="icon">·</span><span class="name">next.config.ts</span><span class="meta">output: export</span></div>
+          <div class="tree-row file"><span class="icon">·</span><span class="name">tsconfig.json</span></div>
+          <div class="tree-row file"><span class="icon">·</span><span class="name">AGENTS.md</span><span class="meta">⚠ ler primeiro</span></div>
+          <div class="tree-row file"><span class="icon">·</span><span class="name">README.md</span><span class="meta">padrão create-next-app</span></div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- PAGE FLOW -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <h2 class="section-title">Fluxo da página</h2>
+      <span class="section-sub">ordem das 17 seções</span>
+    </div>
+    <div class="flow">
+      <div class="flow-grid">
+        <div class="flow-step"><div class="flow-num">1</div><span class="label">Header</span></div>
+        <div class="flow-step"><div class="flow-num">2</div><span class="label">Hero</span></div>
+        <div class="flow-step"><div class="flow-num">3</div><span class="label">Security Challenges</span></div>
+        <div class="flow-step"><div class="flow-num">4</div><span class="label">What is SASE</span></div>
+        <div class="flow-step"><div class="flow-num">5</div><span class="label">Architecture</span></div>
+        <div class="flow-step"><div class="flow-num">6</div><span class="label">FortiClient</span></div>
+        <div class="flow-step"><div class="flow-num">7</div><span class="label">Secure Browser</span></div>
+        <div class="flow-step"><div class="flow-num">8</div><span class="label">Strategic Value</span></div>
+        <div class="flow-step"><div class="flow-num">9</div><span class="label">Business Benefits</span></div>
+        <div class="flow-step"><div class="flow-num">10</div><span class="label">Differentiators</span></div>
+        <div class="flow-step"><div class="flow-num">11</div><span class="label">Gartner Leader</span><span class="tag">badge</span></div>
+        <div class="flow-step"><div class="flow-num">12</div><span class="label">SASE Simulator</span><span class="tag">interativo</span></div>
+        <div class="flow-step"><div class="flow-num">13</div><span class="label">Use Case Tabs</span></div>
+        <div class="flow-step"><div class="flow-num">14</div><span class="label">Technical KB</span></div>
+        <div class="flow-step"><div class="flow-num">15</div><span class="label">Contact Agent CTA</span><span class="tag">lead</span></div>
+        <div class="flow-step"><div class="flow-num">16</div><span class="label">FAQ</span></div>
+        <div class="flow-step"><div class="flow-num">17</div><span class="label">Footer</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPONENT CATEGORIES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <h2 class="section-title">Componentes por função</h2>
+    </div>
+    <div class="categories">
+
+      <div class="category">
+        <div class="cat-head">
+          <span class="cat-emoji">🎯</span>
+          <span class="cat-title">Hero & estrutura</span>
+          <span class="cat-count">4</span>
+        </div>
+        <div class="cat-items">
+          <span class="chip">Header</span>
+          <span class="chip">HeroSection</span>
+          <span class="chip">Footer</span>
+          <span class="chip">ScrollIndicator</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="cat-head">
+          <span class="cat-emoji">🛡️</span>
+          <span class="cat-title">Conteúdo SASE</span>
+          <span class="cat-count">8</span>
+        </div>
+        <div class="cat-items">
+          <span class="chip">SecurityChallenges</span>
+          <span class="chip">WhatIsSASE</span>
+          <span class="chip">ArchitectureDiagram</span>
+          <span class="chip">FortiClientSection</span>
+          <span class="chip">SecureBrowserSection</span>
+          <span class="chip">StrategicValue</span>
+          <span class="chip">BusinessBenefits</span>
+          <span class="chip">Differentiators</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="cat-head">
+          <span class="cat-emoji">⚡</span>
+          <span class="cat-title">Interativos</span>
+          <span class="cat-count">4</span>
+        </div>
+        <div class="cat-items">
+          <span class="chip">SaseSimulator</span>
+          <span class="chip">UseCaseTabs</span>
+          <span class="chip">TechnicalKB</span>
+          <span class="chip">GartnerLeader</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="cat-head">
+          <span class="cat-emoji">📥</span>
+          <span class="cat-title">Conversão / Lead</span>
+          <span class="cat-count">4</span>
+        </div>
+        <div class="cat-items">
+          <span class="chip">ContactAgentCTA</span>
+          <span class="chip">LeadDrawer</span>
+          <span class="chip">LeadForm</span>
+          <span class="chip">DeepDiveDrawer</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="cat-head">
+          <span class="cat-emoji">📱</span>
+          <span class="cat-title">Mobile / Serviços</span>
+          <span class="cat-count">2</span>
+        </div>
+        <div class="cat-items">
+          <span class="chip">MobileExperience</span>
+          <span class="chip">ManagedServices</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="cat-head">
+          <span class="cat-emoji">❓</span>
+          <span class="cat-title">FAQ / Drivers</span>
+          <span class="cat-count">2</span>
+        </div>
+        <div class="cat-items">
+          <span class="chip">FAQSection</span>
+          <span class="chip">TransformDrivers</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DEPLOY -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h2 class="section-title">Deploy & config</h2>
+    </div>
+    <div class="deploy">
+      <div class="info-card">
+        <h4>Comandos</h4>
+        <div class="info-row"><span class="key">dev →</span><span class="val">next dev</span></div>
+        <div class="info-row"><span class="key">build →</span><span class="val">next build</span></div>
+        <div class="info-row"><span class="key">output →</span><span class="val">next start</span></div>
+        <div class="info-row"><span class="key">lint →</span><span class="val">eslint</span></div>
+      </div>
+      <div class="info-card">
+        <h4>next.config.ts</h4>
+        <div class="info-row"><span class="key">output:</span><span class="val">"export"</span></div>
+        <div class="info-row"><span class="key">trailingSlash:</span><span class="val">true</span></div>
+        <div class="info-row"><span class="key">images:</span><span class="val">unoptimized</span></div>
+        <div class="info-row"><span class="key">deploy target:</span><span class="val">Cloudflare Pages</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Gerado em 02 jun 2026 · pasta SSE do projeto FortiSASE
+  </div>
+
+</div>
+</body>
+</html>
