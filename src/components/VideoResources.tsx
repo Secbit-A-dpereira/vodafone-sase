@@ -42,13 +42,13 @@ export default function VideoResources() {
       {/* Section header */}
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center mb-14">
-          <span className="inline-block text-xs font-mono text-vodafone bg-vodafone/10 px-2 py-1 rounded mb-3">
+          <span className="inline-block text-xs lg:text-sm font-mono text-vodafone bg-vodafone/10 px-2 py-1 rounded mb-3">
             VÍDEOS E DEMONSTRAÇÕES
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight">
             Veja o SASE em ação
           </h2>
-          <p className="text-xs sm:text-sm text-text-secondary max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="text-xs sm:text-sm lg:text-base text-text-secondary max-w-2xl mx-auto leading-relaxed font-light">
             Demonstrações práticas da plataforma Vodafone Business SASE.
           </p>
         </div>
