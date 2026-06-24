@@ -76,7 +76,7 @@ export default function UseCaseTabs() {
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <Reveal className="text-center mb-14" variant="up">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-3 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-3 tracking-tight">
             Valor prático por indústria
           </h2>
           <p className="text-text-secondary text-xs sm:text-sm max-w-2xl mx-auto font-light leading-relaxed">
