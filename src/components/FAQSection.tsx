@@ -39,10 +39,10 @@ export default function FAQSection() {
       <div className="mx-auto max-w-3xl">
         {/* Apple Title */}
         <Reveal className="text-center mb-16" variant="up">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight">
             Perguntas Frequentes
           </h2>
-          <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-light">
+          <p className="text-xs sm:text-sm lg:text-base text-text-secondary leading-relaxed font-light">
             Esclareça as questões essenciais sobre custos, implementação e privacidade da solução SASE.
           </p>
         </Reveal>

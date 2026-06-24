@@ -86,13 +86,13 @@ export default function BusinessBenefits() {
         
         {/* Apple Header */}
         <Reveal className="text-center mb-12" variant="up">
-          <span className="text-xs font-bold text-vodafone tracking-wider uppercase block mb-3 font-mono">
+          <span className="text-xs lg:text-sm font-bold text-vodafone tracking-wider uppercase block mb-3 font-mono">
             BENEFICIOS EM 5 DOMÍNIOS
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight">
             O seu negócio resiliente e protegido
           </h2>
-          <p className="text-xs sm:text-sm text-text-secondary max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="text-xs sm:text-sm lg:text-base text-text-secondary max-w-2xl mx-auto leading-relaxed font-light">
             Como a solução Vodafone Business SASE resolve desfios críticos da infraestrutura moderna.
           </p>
         </Reveal>

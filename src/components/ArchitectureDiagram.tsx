@@ -19,10 +19,10 @@ export default function ArchitectureDiagram() {
         
         {/* Apple Style Header */}
         <Reveal className="text-center mb-16" variant="up">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight">
             Arquitetura SASE
           </h2>
-          <p className="text-xs sm:text-sm text-text-secondary max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="text-xs sm:text-sm lg:text-base text-text-secondary max-w-2xl mx-auto leading-relaxed font-light">
             Integração de uma rede SD-WAN com segurança uniforme (SSE) gerida sob um único sistema operativo (FortiOS).
           </p>
         </Reveal>

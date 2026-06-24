@@ -95,7 +95,7 @@ export default function TrustStrip() {
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 pb-10 sm:pb-14">
         <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+          <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
             A escolha de empresas líderes em sectores críticos
           </h2>
         </div>
@@ -110,7 +110,7 @@ export default function TrustStrip() {
               <span className="text-text-secondary group-hover:text-vodafone transition-colors">
                 {v.icon}
               </span>
-              <span className="text-[11px] sm:text-xs font-semibold text-text-secondary group-hover:text-white tracking-wide transition-colors">
+              <span className="text-[11px] sm:text-xs lg:text-sm font-semibold text-text-secondary group-hover:text-white tracking-wide transition-colors">
                 {v.name}
               </span>
             </li>
@@ -124,7 +124,7 @@ export default function TrustStrip() {
               key={s.label}
               className="bg-[#000000] p-5 sm:p-6 text-center"
             >
-              <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-1">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-1">
                 {s.value === "99.99%" ? (
                   <><AnimatedCounter target={99.99} decimals={2} suffix="%" duration={2500} /></>
                 ) : s.value === "24/7" ? (
@@ -133,7 +133,7 @@ export default function TrustStrip() {
                   <><AnimatedCounter target={170} duration={2000} suffix="+" /></>
                 )}
               </div>
-              <div className="text-[10px] sm:text-xs text-text-secondary leading-snug">
+              <div className="text-[10px] sm:text-xs lg:text-sm text-text-secondary leading-snug">
                 {s.label}
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function TrustStrip() {
           {SECURITY_BADGES.map((badge) => (
             <div
               key={badge.label}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 text-[10px] sm:text-xs"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 text-[10px] sm:text-xs lg:text-sm">
             >
               <span className="w-1.5 h-1.5 rounded-full bg-accent-green shrink-0" />
               <span className="font-bold text-white">{badge.label}</span>
@@ -156,7 +156,7 @@ export default function TrustStrip() {
         </div>
 
         {/* Compliance line */}
-        <p className="text-center text-[10px] sm:text-xs text-text-muted font-mono tracking-wider uppercase mt-6">
+        <p className="text-center text-[10px] sm:text-xs lg:text-sm text-text-muted font-mono tracking-wider uppercase mt-6">
           Compatível com RGPD · ISO/IEC 27001 · NIS2 — Auditoria contínua
         </p>
       </div>

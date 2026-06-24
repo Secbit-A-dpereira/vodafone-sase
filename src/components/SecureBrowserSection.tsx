@@ -64,13 +64,13 @@ export default function SecureBrowserSection() {
         
         {/* Header Title */}
         <Reveal className="text-center mb-10" variant="up">
-          <span className="inline-block text-xs font-mono text-vodafone bg-vodafone/10 px-2.5 py-1 rounded mb-3">
+          <span className="inline-block text-xs lg:text-sm font-mono text-vodafone bg-vodafone/10 px-2.5 py-1 rounded mb-3">
             SEGURANÇA WEB SEM AGENTE
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white text-center tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white text-center tracking-tight leading-tight">
             Proteção SASE em qualquer browser
           </h2>
-          <p className="text-xs sm:text-sm text-text-secondary max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm lg:text-base text-text-secondary max-w-2xl mx-auto leading-relaxed">
             A extensão <strong>Fortinet Secure Browser</strong> adiciona controlos robustos de proteção corporativa diretamente no browser atual do utilizador. Ideal para máquinas pessoais (BYOD) e parceiros externos, garante conformidade SASE e DLP avançada de forma ágil e sem atrito.
           </p>
         </Reveal>

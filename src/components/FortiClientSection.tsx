@@ -60,13 +60,13 @@ export default function FortiClientSection() {
         
         {/* Header Title */}
         <Reveal className="text-center mb-10" variant="up">
-          <span className="inline-block text-xs font-mono text-vodafone bg-vodafone/10 px-2.5 py-1 rounded mb-3">
+          <span className="inline-block text-xs lg:text-sm font-mono text-vodafone bg-vodafone/10 px-2.5 py-1 rounded mb-3">
             AGENTE DE SEGURANÇA
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-text-primary tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-text-primary tracking-tight leading-tight">
             Segurança total com FortiClient
           </h2>
-          <p className="text-xs sm:text-sm text-text-secondary max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm lg:text-base text-text-secondary max-w-2xl mx-auto leading-relaxed">
             O <strong>FortiClient</strong> é um agente modular leve que simplifica a segurança das máquinas de trabalho. Consolida conetividade cifrada, postura do equipamento e defesa ativa numa única solução gerida centralmente.
           </p>
         </Reveal>

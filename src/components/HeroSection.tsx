@@ -357,16 +357,16 @@ export default function HeroSection() {
         <div className="my-auto flex flex-col items-center justify-center max-w-3xl px-2">
         {/* Tag above title */}
         <div className="animate-fade-in-up mb-2 sm:mb-3">
-          <span className="text-[10px] sm:text-xs font-extrabold text-vodafone tracking-[0.25em] uppercase block font-mono">
+          <span className="text-[10px] sm:text-xs lg:text-sm font-extrabold text-vodafone tracking-[0.25em] uppercase block font-mono">
             {SLIDES[current].tag}
           </span>
         </div>
-          <h1 className="text-[34px] sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.08] mb-5 select-none font-sans drop-shadow-2xl animate-fade-in-up">
+          <h1 className="text-[34px] sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tight leading-[1.08] mb-5 select-none font-sans drop-shadow-2xl animate-fade-in-up">
             {SLIDES[current].title}
           </h1>
 
           {/* Subtitle description */}
-          <p className="text-xs sm:text-base md:text-lg text-text-secondary/85 font-light leading-relaxed max-w-2xl mx-auto drop-shadow-md animate-fade-in-up">
+          <p className="text-xs sm:text-base md:text-lg lg:text-xl text-text-secondary/85 font-light leading-relaxed max-w-2xl mx-auto drop-shadow-md animate-fade-in-up">
             {SLIDES[current].desc}
           </p>
 

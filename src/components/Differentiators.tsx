@@ -50,10 +50,10 @@ export default function Differentiators() {
         
         {/* Apple Header */}
         <Reveal className="text-center mb-12" variant="up">
-          <span className="text-xs font-bold text-vodafone tracking-wider uppercase block mb-3 font-mono">
+          <span className="text-xs lg:text-sm font-bold text-vodafone tracking-wider uppercase block mb-3 font-mono">
             PORQUÊ A VODAFONE?
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight">
             Os nossos pontos diferenciadores
           </h2>
         </Reveal>

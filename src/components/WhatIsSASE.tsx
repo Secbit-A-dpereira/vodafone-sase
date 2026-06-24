@@ -9,10 +9,10 @@ export default function WhatIsSASE() {
 
         {/* Header */}
         <Reveal className="text-center mb-12" variant="up">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight">
             O que é Vodafone Business SASE?
           </h2>
-          <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-light max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-text-secondary leading-relaxed font-light max-w-2xl mx-auto">
             Acesso seguro e controlado a aplicações, web e rede privadas - em qualquer localização ou dispositivo.
           </p>
         </Reveal>

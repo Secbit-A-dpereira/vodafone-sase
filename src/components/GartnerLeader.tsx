@@ -7,14 +7,14 @@ export default function GartnerLeader() {
         
         {/* Header Title */}
         <div className="text-center mb-12">
-          <span className="inline-block text-xs font-mono text-vodafone bg-vodafone/10 px-2 py-1 rounded mb-3">
+          <span className="inline-block text-xs lg:text-sm font-mono text-vodafone bg-vodafone/10 px-2 py-1 rounded mb-3">
             FORTINET RECONHECIDO COMO LÍDER NO MERCARDO
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight flex items-center justify-center gap-4">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight flex items-center justify-center gap-4">
             <img src="/hummingbird.png" alt="" className="h-10 sm:h-14 w-auto" />
             Single-Vendor SASE
           </h2>
-          <p className="text-xs sm:text-sm text-text-secondary max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm lg:text-base text-text-secondary max-w-2xl mx-auto leading-relaxed">
             A convergência técnica da infraestrutura assenta no reconhecimento contínuo e liderança nos quadrantes de segurança do Gartner.
           </p>
         </div>
