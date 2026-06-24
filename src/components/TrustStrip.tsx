@@ -145,7 +145,7 @@ export default function TrustStrip() {
           {SECURITY_BADGES.map((badge) => (
             <div
               key={badge.label}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 text-[10px] sm:text-xs lg:text-sm">
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 text-[10px] sm:text-xs lg:text-sm"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-accent-green shrink-0" />
               <span className="font-bold text-white">{badge.label}</span>
