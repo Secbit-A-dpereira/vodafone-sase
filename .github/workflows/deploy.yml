@@ -20,8 +20,7 @@ jobs:
       - run: npm run build
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: 98418c9d7c90c4f154ac693a809bb816
-          command: pages deploy out/ --project-name=vodafone-sase --branch=main
+        run: npx wrangler pages deploy out/ --project-name=vodafone-sase --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 98418c9d7c90c4f154ac693a809bb816

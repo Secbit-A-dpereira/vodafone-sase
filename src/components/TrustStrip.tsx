@@ -1,5 +1,3 @@
-"use client";
-
 import BrailleField from "./BrailleField";
 import AnimatedCounter from "./AnimatedCounter";
 

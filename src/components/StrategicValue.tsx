@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Reveal from "./Reveal";
 
@@ -69,7 +67,7 @@ export default function StrategicValue() {
                     <h3 className="font-bold text-text-primary text-sm sm:text-base leading-tight mb-1.5">
                       {val.title}
                     </h3>
-                    <p className="text-xs text-text-secondary leading-relaxed font-light">
+                    <p className="text-sm sm:text-base text-text-secondary leading-relaxed font-light">
                       {val.desc}
                     </p>
                   </div>
@@ -81,7 +79,7 @@ export default function StrategicValue() {
           {/* Column 2: Sleek Generated Photo of Cyber Security strategic partnership meeting */}
           <div className="lg:col-span-6 rounded-2xl border-white/5 overflow-hidden aspect-[4/3] shadow-2xl relative group card-mobbin shimmer-hover">
             <Image
-              src="/strategic-partnership.png"
+              src="/strategic-partnership.webp"
               alt="Parceria Estratégica Vodafone Business SASE"
               width={800}
               height={600}

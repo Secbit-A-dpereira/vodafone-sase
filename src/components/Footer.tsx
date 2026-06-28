@@ -1,12 +1,10 @@
-"use client";
-
 export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-[#000000] pt-14 sm:pt-24">
       {/* Tagline */}
       <div className="mx-auto max-w-6xl px-4 sm:px-6 text-center pb-6 sm:pb-8">
-        <p className="text-[9px] sm:text-[11px] lg:text-sm text-white/40 font-mono tracking-wider">
+        <p className="text-[9px] sm:text-[11px] lg:text-base text-white/40 font-mono tracking-wider">
           Vodafone Business SASE - 2026 Vodafone Open Day
         </p>
       </div>

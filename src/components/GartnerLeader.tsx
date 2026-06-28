@@ -1,5 +1,3 @@
-"use client";
-
 export default function GartnerLeader() {
   return (
     <section id="lider-gartner" className="px-4 sm:px-6 py-20 bg-surface">
